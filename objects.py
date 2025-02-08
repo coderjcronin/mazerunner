@@ -21,29 +21,34 @@ class Cell():
         self.walls = { 'top' : True, 'right' : True, 'bottom' : True, 'left' : True}
         self._pos1 = pos1
         self._pos2 = pos2
+        self.visited = False
 
     def draw(self, pos1=False, pos2=False):
         if pos1:
             self._pos1 = pos1
         if pos2:
             self._pos2 = pos2
-            
+
+        top_line = Line(Point(self._pos1.x, self._pos1.y), Point(self._pos2.x, self._pos1.y))
+        right_line = Line(Point(self._pos2.x, self._pos1.y), Point(self._pos2.x, self._pos2.y))
+        bottom_line = Line(Point(self._pos1.x, self._pos2.y), Point(self._pos2.x, self._pos2.y))
+        left_line = Line(Point(self._pos1.x, self._pos1.y), Point(self._pos1.x, self._pos2.y))
+
+        top_color, right_color, bottom_color, left_color = "white", "white", "white", "white"
         if self.walls['top']:
-            self._window.draw_line(
-                Line(Point(self._pos1.x, self._pos1.y), Point(self._pos2.x, self._pos1.y))
-            )
+            top_color = "black"
         if self.walls['right']:
-            self._window.draw_line(
-                Line(Point(self._pos2.x, self._pos1.y), Point(self._pos2.x, self._pos2.y))
-            )
+            right_color = "black"
         if self.walls['bottom']:
-            self._window.draw_line(
-                Line(Point(self._pos1.x, self._pos2.y), Point(self._pos2.x, self._pos2.y))
-            )
+            bottom_color = "black"
         if self.walls['left']:
-            self._window.draw_line(
-                Line(Point(self._pos1.x, self._pos1.y), Point(self._pos1.x, self._pos2.y))
-            )
+            left_color = "black"
+
+        self._window.draw_line(top_line, top_color)
+        self._window.draw_line(right_line, right_color)
+        self._window.draw_line(bottom_line, bottom_color)
+        self._window.draw_line(left_line, left_color)
+
     
     def draw_move(self, to_cell, undo=False):
         source_x = abs((self._pos1.x + self._pos2.x) // 2)
