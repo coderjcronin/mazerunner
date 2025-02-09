@@ -17,7 +17,7 @@ def main():
 
     origin_point = Point(MARGIN, MARGIN)
 
-    maze = Maze(origin_point, ROWS, COLS, cell_size, win, 2)
+    maze = Maze(origin_point, ROWS, COLS, cell_size, win)
 
     maze.solve()
     
