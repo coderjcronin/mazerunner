@@ -4,9 +4,9 @@ from objects import Point
 
 SCREEN_X = 800
 SCREEN_Y = 800
-COLS = 12
-ROWS = 12
-MARGIN = 50
+COLS = 14
+ROWS = 14
+MARGIN = 25
 
 def main():
     win = Window(SCREEN_X, SCREEN_Y)
