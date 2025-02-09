@@ -18,6 +18,8 @@ def main():
     origin_point = Point(MARGIN, MARGIN)
 
     maze = Maze(origin_point, ROWS, COLS, cell_size, win, 2)
+
+    maze.solve()
     
     win.wait_for_close()
     
